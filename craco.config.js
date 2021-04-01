@@ -2,14 +2,36 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-var-requires */
 // const CracoAntDesignPlugin = require('craco-antd');
+// const webpack = require('webpack');
 const CracoAlias = require('craco-alias');
 // const CracoLessPlugin = require('craco-less');
 const CracoStylusPlugin = require('craco-stylus-loader');
 // const cracoPluginStyleResourcesLoader = require('craco-plugin-style-resources-loader');
 
-// const path = require('path');
+const path = require('path');
+
+const pathResolve = (pathUrl) => path.join(__dirname, pathUrl);
 
 module.exports = {
+  webpack: {
+    // 别名配置
+    alias: {
+      '@': pathResolve('.'),
+      src: pathResolve('src'),
+      // hooks: pathResolve('src/hooks'),
+      pages: pathResolve('src/pages'),
+      store: pathResolve('src/store'),
+      utils: pathResolve('src/utils'),
+      assets: pathResolve('src/assets'),
+      styles: pathResolve('src/styles'),
+      router: pathResolve('src/router'),
+      actions: pathResolve('src/actions'),
+      reducers: pathResolve('src/reducers'),
+      services: pathResolve('src/services'),
+      // common: pathResolve('src/common'),
+      components: pathResolve('src/components'),
+    },
+  },
   babel: {
     plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
   },
