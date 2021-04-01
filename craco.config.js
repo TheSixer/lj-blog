@@ -2,6 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-var-requires */
 // const CracoAntDesignPlugin = require('craco-antd');
+// const webpack = require('webpack');
 const CracoAlias = require('craco-alias');
 // const CracoLessPlugin = require('craco-less');
 const CracoStylusPlugin = require('craco-stylus-loader');
@@ -55,7 +56,7 @@ module.exports = {
       options: {
         source: 'tsconfig',
         baseUrl: './src',
-        tsConfigPath: './tsconfig.extends.json',
+        tsConfigPath: './tsconfig.base.json',
       },
     },
   ],
