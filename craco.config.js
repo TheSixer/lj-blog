@@ -56,7 +56,7 @@ module.exports = {
       options: {
         source: 'tsconfig',
         baseUrl: './src',
-        tsConfigPath: './tsconfig.json',
+        tsConfigPath: './tsconfig.base.json',
       },
     },
   ],
