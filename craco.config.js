@@ -1,12 +1,18 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-var-requires */
-// const CracoAntDesignPlugin = require("craco-antd");
+// const CracoAntDesignPlugin = require('craco-antd');
 const CracoAlias = require('craco-alias');
-// const CracoLessPlugin = require("craco-less");
-// const CracoStylusPlugin = require('craco-stylus');
+// const CracoLessPlugin = require('craco-less');
+const CracoStylusPlugin = require('craco-stylus-loader');
+// const cracoPluginStyleResourcesLoader = require('craco-plugin-style-resources-loader');
 
 // const path = require('path');
 
 module.exports = {
+  babel: {
+    plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
+  },
   plugins: [
     /* antd组件按需加载&样式覆盖等 */
     // {
@@ -14,7 +20,7 @@ module.exports = {
     //   options: {
     //     customizeThemeLessPath: path.join(
     //       __dirname,
-    //       "src/styles/antd.theme.less"
+    //       'src/styles/antd.theme.less'
     //     ),
     //   },
     // },
@@ -23,9 +29,9 @@ module.exports = {
     //   plugin: CracoLessPlugin,
     //   options: {
     //     cssLoaderOptions: {
-    //       modules: { localIdentName: "[local]_[hash:base64:5]" },
+    //       modules: { localIdentName: '[local]_[hash:base64:5]' },
     //     },
-    //     modifyLessRule: function(lessRule, _context) {
+    //     modifyLessRule(lessRule) {
     //       lessRule.test = /\.(module)\.(less)$/;
     //       lessRule.exclude = path.join(__dirname, 'node_modules');
     //       return lessRule;
@@ -33,17 +39,14 @@ module.exports = {
     //   },
     // },
     /* 支持stylus module */
+    {
+      plugin: CracoStylusPlugin,
+    },
     // {
-    //   plugin: CracoStylusPlugin,
+    //   plugin: cracoPluginStyleResourcesLoader,
     //   options: {
-    //     cssLoaderOptions: {
-    //       modules: { localIdentName: "[local]_[hash:base64:5]" },
-    //     },
-    //     modifyStylusRule: function (stylRule, _context) {
-    //       stylRule.test = /\.(module)\.(styl)$/;
-    //       stylRule.exclude = path.join(__dirname, 'node_modules');
-    //       return stylRule;
-    //     },
+    //     patterns: path.join(__dirname, 'src/stylus/common.styl'),
+    //     styleType: 'stylus',
     //   },
     // },
     /* 别名设置 */
@@ -63,7 +66,7 @@ module.exports = {
       compress: true,
       proxy: {
         '/api': {
-          target: 'https://test.com/',
+          target: 'http://localhost:8080/',
           changeOrigin: true,
           xfwd: false,
         },
