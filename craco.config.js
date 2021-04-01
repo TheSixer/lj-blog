@@ -8,30 +8,9 @@ const CracoAlias = require('craco-alias');
 const CracoStylusPlugin = require('craco-stylus-loader');
 // const cracoPluginStyleResourcesLoader = require('craco-plugin-style-resources-loader');
 
-const path = require('path');
-
-const pathResolve = (pathUrl) => path.join(__dirname, pathUrl);
+// const path = require('path');
 
 module.exports = {
-  webpack: {
-    // 别名配置
-    alias: {
-      '@': pathResolve('.'),
-      src: pathResolve('src'),
-      // hooks: pathResolve('src/hooks'),
-      pages: pathResolve('src/pages'),
-      store: pathResolve('src/store'),
-      utils: pathResolve('src/utils'),
-      assets: pathResolve('src/assets'),
-      styles: pathResolve('src/styles'),
-      router: pathResolve('src/router'),
-      actions: pathResolve('src/actions'),
-      reducers: pathResolve('src/reducers'),
-      services: pathResolve('src/services'),
-      // common: pathResolve('src/common'),
-      components: pathResolve('src/components'),
-    },
-  },
   babel: {
     plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
   },
@@ -77,7 +56,7 @@ module.exports = {
       options: {
         source: 'tsconfig',
         baseUrl: './src',
-        tsConfigPath: './tsconfig.extends.json',
+        tsConfigPath: './tsconfig.json',
       },
     },
   ],

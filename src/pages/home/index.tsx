@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { queryArticles } from 'services/api';
+import { queryArticles } from '@/services/api';
 import React from 'react';
 // import { connect } from 'react-redux';
 import { animateScroll } from 'react-scroll';

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import routes from 'router';
+import routes from '@/router';
 import Header from './header';
 import Footer from './footer';
 import Background from './background';
