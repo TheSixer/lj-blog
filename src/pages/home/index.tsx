@@ -1,6 +1,8 @@
+/* eslint-disable no-console */
+import { queryArticles } from '@/services/api';
 import React from 'react';
 // import { connect } from 'react-redux';
-import { Link, animateScroll } from 'react-scroll';
+import { animateScroll } from 'react-scroll';
 // import { add, minus, asyncAdd } from '../../actions/counter';
 import './index.styl';
 
@@ -21,7 +23,7 @@ type PageOwnProps = {
 };
 
 type PageState = {
-  id: number;
+  list: any;
 };
 
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps;
@@ -31,75 +33,45 @@ export interface Index {
 }
 
 class HomePage extends React.Component<IProps, PageState> {
+  constructor(props: IProps) {
+    super(props);
+
+    this.state = {
+      // eslint-disable-next-line react/no-unused-state
+      list: [],
+    };
+  }
+
   scrollToTop = () => {
     animateScroll.scrollToTop();
   };
 
+  getList = async () => {
+    const { data } = await queryArticles();
+    this.setState({
+      // eslint-disable-next-line react/no-unused-state
+      list: data.rows,
+    });
+  };
+
+  componentDidMount = () => {
+    this.getList();
+  };
+
   public render() {
+    const { list } = this.state;
     return (
       <div className="hello">
         <div className="greeting">
-          <Link activeClass="active" to="rel1" spy smooth duration={250}>
+          {/* <Link activeClass="active" to="rel1" spy smooth duration={250}>
             rel 1
-          </Link>
-          <p>
-            <span>Hello, World</span>
-          </p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
-          <p>this is home page.</p>
+          </Link> */}
+          {list.map((opt: any, index: number) => (
+            <div key={index}>
+              <h4>{opt.title}</h4>
+              <p>{opt.introduction}</p>
+            </div>
+          ))}
         </div>
       </div>
     );

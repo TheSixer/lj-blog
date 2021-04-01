@@ -8,17 +8,17 @@ import { BASE_URL } from '../config/index';
  */
 // eslint-disable-next-line no-undef
 function checkHttpStatus(response: any, resolve: any, reject: any) {
-  if (response.statusCode >= 200 && response.statusCode < 300) {
-    resolve(response.data);
+  if (response.status >= 200 && response.status < 300) {
+    resolve(response.json());
   } else {
-    response.data.errorCode = response.statusCode;
-    response.data.error = `ERROR CODE: ${response.statusCode}`;
+    response.data.errorCode = response.status;
+    response.data.error = `ERROR CODE: ${response.status}`;
     reject(response.data);
   }
 }
 
 export default {
-  request(url: string, params: any, method?: string) {
+  request(url: string, params?: any, method?: string) {
     return new Promise((resolve, reject) => {
       fetch(`${BASE_URL}${url}`, {
         headers: {
@@ -26,18 +26,18 @@ export default {
           accept: 'application/json,text/plain,*/*',
         },
         method: method || 'GET',
-        body: qs.stringify(params),
+        body: params && qs.stringify(params),
       })
         .then((res) => {
-          checkHttpStatus(res.body, resolve, reject);
+          checkHttpStatus(res, resolve, reject);
         })
         .catch((err) => {
           throw err;
         });
     });
   },
-  get(url: string, params?: any) {
-    return this.request(url, params || {});
+  get(url: string) {
+    return this.request(url);
   },
   post(url: string, params?: any) {
     return this.request(url, params || {}, 'POST');
