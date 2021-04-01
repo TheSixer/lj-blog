@@ -33,6 +33,7 @@ module.exports = {
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-function-return-type': [
       0,
       {
@@ -40,6 +41,7 @@ module.exports = {
       },
     ],
     'react/state-in-constructor': 0,
+    'react/no-array-index-key': 0,
     'import/extensions': [
       2,
       'ignorePackages',
@@ -65,7 +67,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       },
       typescript: {
-        directory: './tsconfig.json',
+        project: './tsconfig.json',
       },
     },
   },

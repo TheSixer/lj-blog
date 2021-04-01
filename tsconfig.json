@@ -33,5 +33,5 @@
     "node_modules",
     "build"
   ],
-  "extends": "./tsconfig.extend.json"
+  "extends": "./tsconfig.paths.json"
 }
