@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { createAction } from 'utils/redux';
+import { createAction } from '@/utils/redux';
 import { HOME_BANNER } from '../constants/home';
 
 /**
