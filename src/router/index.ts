@@ -8,7 +8,7 @@ export interface RouteItem {
   routeName: string;
   component: React.ReactNode;
   exact?: boolean;
-  routes?: RouteItem;
+  routes?: RouteItem[];
 }
 const menu = [
   {
@@ -18,8 +18,8 @@ const menu = [
     exact: true,
   },
   {
-    path: '/article',
-    routeName: 'list',
+    path: '/detail/:id',
+    routeName: 'articleDetail',
     component: Article,
   },
   {
