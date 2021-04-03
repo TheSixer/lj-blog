@@ -30,7 +30,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App default">
         <Layout>
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/home" />} />

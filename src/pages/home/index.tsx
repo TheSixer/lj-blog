@@ -1,8 +1,9 @@
 /* eslint-disable no-console */
 import { queryArticles } from '@/services/api';
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 // import { connect } from 'react-redux';
-import { animateScroll } from 'react-scroll';
+import { animateScroll, Link } from 'react-scroll';
 // import { add, minus, asyncAdd } from '../../actions/counter';
 import './index.styl';
 
@@ -63,14 +64,18 @@ class HomePage extends React.Component<IProps, PageState> {
     return (
       <div className="hello">
         <div className="greeting">
-          {/* <Link activeClass="active" to="rel1" spy smooth duration={250}>
+          <Link activeClass="active" to="rel1" spy smooth duration={250}>
             rel 1
-          </Link> */}
+          </Link>
           {list.map((opt: any, index: number) => (
-            <div key={index}>
+            <NavLink
+              to={{ pathname: `/detail/${opt.id}`, state: opt }}
+              activeClassName="selected"
+              key={index}
+            >
               <h4>{opt.title}</h4>
               <p>{opt.introduction}</p>
-            </div>
+            </NavLink>
           ))}
         </div>
       </div>

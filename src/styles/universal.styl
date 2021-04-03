@@ -6,8 +6,7 @@
 
 
 body
-  overflow-x hidden
-  overflow-y scroll
+  overflow hidden
   font-family $font-family-normal
   font-size $font-size-base
   line-height $line-height-base
@@ -18,18 +17,18 @@ body
   scrollbar-style($sm-gap, rgba($grey, 60%), darken($grey, 20%), darken($grey, 40%))
 
   *
-    scrollbar-style($sm-gap, $module-bg, $module-bg-darker-1, $module-bg-darker-2)
+    // scrollbar-style($sm-gap, $module-bg, $module-bg-darker-1, $module-bg-darker-2)
+    scrollbar-style($sm-gap, rgba($grey, 60%), darken($grey, 20%), darken($grey, 40%))
   
 
 
-#app-root
-  color $text
+.App
   &.default
     defaultTheme()
   
 
-//   &.dark
-//     darkTheme()
+  &.dark
+    darkTheme()
   
 
 
@@ -37,6 +36,10 @@ body
   width $container-width
   margin 0 auto
 
+// .icon
+//   display inline-block
+//   width 1em
+//   line-height 1em
 
 .iconfont
   font-size 1em
