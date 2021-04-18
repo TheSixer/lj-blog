@@ -1,7 +1,9 @@
 export const IS_DEV = process.env.NODE_ENV === 'development';
 
 // 开发时本地可自己开启NeteaseCloudMusicApi服务(https://binaryify.github.io/NeteaseCloudMusicApi/#/)
-export const BASE_URL = IS_DEV ? 'http://localhost:8080' : '/';
+export const BASE_URL = IS_DEV
+  ? 'http://localhost:8080/api/v1'
+  : 'http://www.jxdlr.com/api/v1';
 
 export const HTTP_ERROR = {
   '400': '发出的请求有错误，服务器没有进行新建或修改数据的操作。',
