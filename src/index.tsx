@@ -3,9 +3,15 @@ import ReactDOM from 'react-dom';
 import './index.styl';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import configStore from './store';
+import 'dayjs/locale/zh-cn';
+
+dayjs.locale('zh-cn');
+dayjs.extend(relativeTime);
 
 const store = configStore();
 

@@ -1,10 +1,12 @@
-/* eslint-disable no-console */
-import { queryArticles } from '@/services/api';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+/* eslint-disable no-console */
+import Swiper from '@/components/carousel';
+import Art from '@/types/article';
+import { animateScroll } from 'react-scroll';
 // import { connect } from 'react-redux';
-import { animateScroll, Link } from 'react-scroll';
 // import { add, minus, asyncAdd } from '../../actions/counter';
+import HomeArticle from '@/components/Article';
+import { queryArticles } from '@/services/api';
 import './index.styl';
 
 type PageStateProps = {
@@ -24,7 +26,9 @@ type PageOwnProps = {
 };
 
 type PageState = {
-  list: any;
+  list: Art.SkeletonItem[];
+  data: Art.SkeletonItem[];
+  banners: Art.ArticleItem[];
 };
 
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps;
@@ -38,7 +42,8 @@ class HomePage extends React.Component<IProps, PageState> {
     super(props);
 
     this.state = {
-      // eslint-disable-next-line react/no-unused-state
+      banners: [],
+      data: [...new Array(10)].map(() => ({ loading: true, data: null })),
       list: [],
     };
   }
@@ -50,8 +55,11 @@ class HomePage extends React.Component<IProps, PageState> {
   getList = async () => {
     const { data } = await queryArticles();
     this.setState({
-      // eslint-disable-next-line react/no-unused-state
-      list: data.rows,
+      banners: data.rows.slice(0, 5),
+      list: data.rows.map((item: Art.ArticleItem) => ({
+        loading: false,
+        data: item,
+      })),
     });
   };
 
@@ -60,23 +68,13 @@ class HomePage extends React.Component<IProps, PageState> {
   };
 
   public render() {
-    const { list } = this.state;
+    const { list, data, banners } = this.state;
     return (
-      <div className="hello">
-        <div className="greeting">
-          <Link activeClass="active" to="rel1" spy smooth duration={250}>
-            rel 1
-          </Link>
-          {list.map((opt: any, index: number) => (
-            <NavLink
-              to={{ pathname: `/detail/${opt.id}`, state: opt }}
-              activeClassName="selected"
-              key={index}
-            >
-              <h4>{opt.title}</h4>
-              <p>{opt.introduction}</p>
-            </NavLink>
-          ))}
+      <div className="lj-blog-home">
+        <Swiper data={banners} />
+
+        <div className="lj-blog-home-article">
+          <HomeArticle list={list.length ? list : data} />
         </div>
       </div>
     );

@@ -1,30 +1,33 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable @typescript-eslint/no-var-requires */
-// const CracoAntDesignPlugin = require('craco-antd');
+const CracoAntDesignPlugin = require('craco-antd');
 // const webpack = require('webpack');
 const CracoAlias = require('craco-alias');
 // const CracoLessPlugin = require('craco-less');
 const CracoStylusPlugin = require('craco-stylus-loader');
-// const cracoPluginStyleResourcesLoader = require('craco-plugin-style-resources-loader');
+const AntdDayjsWebpackPlugin = require('antd-dayjs-webpack-plugin');
 
-// const path = require('path');
+const path = require('path');
 
 module.exports = {
+  webpack: {
+    plugins: [new AntdDayjsWebpackPlugin()],
+  },
   babel: {
     plugins: [['@babel/plugin-proposal-decorators', { legacy: true }]],
   },
   plugins: [
     /* antd组件按需加载&样式覆盖等 */
-    // {
-    //   plugin: CracoAntDesignPlugin,
-    //   options: {
-    //     customizeThemeLessPath: path.join(
-    //       __dirname,
-    //       'src/styles/antd.theme.less'
-    //     ),
-    //   },
-    // },
+    {
+      plugin: CracoAntDesignPlugin,
+      options: {
+        customizeThemeLessPath: path.join(
+          __dirname,
+          'src/styles/antd.theme.styl'
+        ),
+      },
+    },
     /* 支持less module */
     // {
     //   plugin: CracoLessPlugin,
@@ -43,13 +46,6 @@ module.exports = {
     {
       plugin: CracoStylusPlugin,
     },
-    // {
-    //   plugin: cracoPluginStyleResourcesLoader,
-    //   options: {
-    //     patterns: path.join(__dirname, 'src/stylus/common.styl'),
-    //     styleType: 'stylus',
-    //   },
-    // },
     /* 别名设置 */
     {
       plugin: CracoAlias,

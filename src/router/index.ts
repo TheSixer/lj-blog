@@ -27,6 +27,26 @@ const menu = [
     routeName: 'markdown',
     component: Markdown,
   },
+  {
+    path: '/topic',
+    routeName: 'topic',
+    component: Markdown,
+  },
+  {
+    path: '/imagine',
+    routeName: 'imagine',
+    component: Markdown,
+  },
+  {
+    path: '/life',
+    routeName: 'life',
+    component: Markdown,
+  },
+  {
+    path: '/about-me',
+    routeName: 'aboutMe',
+    component: Markdown,
+  },
 ];
 
 export default menu;

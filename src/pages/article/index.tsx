@@ -21,6 +21,7 @@ function ArriclePage(props: Props): React.ReactElement<Props> {
       <div className="lj-blog-article-content">
         <div
           className="markdown-html"
+          // eslint-disable-next-line
           dangerouslySetInnerHTML={{
             __html: markdownToHTML(state.content),
           }}
