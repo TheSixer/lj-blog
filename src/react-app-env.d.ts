@@ -1,4 +1,5 @@
 /// <reference types="react-scripts" />
+/// <reference types="Art" />
 /* 允许在ts中使用import styles from '*.less' */
 declare global {
   module '*.less' {

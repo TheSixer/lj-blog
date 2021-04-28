@@ -1,5 +1,5 @@
 import qs from 'qs';
-import * as Art from '@/types/article';
+import Art from '@/types/article';
 import request from './fetch';
 
 export const queryArticles = (params?: Art.QueryParams): any =>
