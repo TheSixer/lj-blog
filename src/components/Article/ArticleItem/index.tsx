@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Art from '@/types/article';
 import './index.styl';
 import Tag from '@/components/Tag';
-import { Tooltip } from 'antd';
+import { Image, Tooltip } from 'antd';
 import {
   DislikeOutlined,
   LikeOutlined,
@@ -84,7 +84,12 @@ function HomeArticleItem({ data }: IProps): React.ReactElement {
       activeClassName="selected"
     >
       <div className="lj-blog-home-list-article-item-media">
-        <Tag type="success" text="原创" />
+        <Image width={180} height="100%" src={data.cover} preview={false} />
+        <Tag
+          className="lj-blog-home-list-article-item-media-tag"
+          type="success"
+          text="原创"
+        />
       </div>
       <div className="lj-blog-home-list-article-item-content">
         <h5 className="lj-blog-home-list-article-item-content-title">
