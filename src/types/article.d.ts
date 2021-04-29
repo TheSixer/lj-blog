@@ -1,10 +1,10 @@
 declare namespace Art {
   interface QueryParams {
     kw?: string;
-    type: number;
-    tags: string;
-    start: number;
-    limit: number;
+    type?: number;
+    tags?: string;
+    start?: number;
+    limit?: 10 | number;
   }
 
   interface ArticleItem {

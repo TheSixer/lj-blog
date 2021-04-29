@@ -1,15 +1,15 @@
-import { HOME_BANNER } from '../constants/home';
+import { SET_HOME_ARTICLES } from '../constants/home';
 
 const INITIAL_STATE = {
-  banner: [],
+  list: [],
 };
 
 export default function home(state = INITIAL_STATE, action: any) {
   switch (action.type) {
-    case HOME_BANNER: {
+    case SET_HOME_ARTICLES: {
       return {
         ...state,
-        banner: action.payload.bannerList,
+        list: state.list.concat(action.list),
       };
     }
     default:
