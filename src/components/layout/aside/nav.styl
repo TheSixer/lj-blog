@@ -1,13 +1,24 @@
 
+@import '@/styles/init.styl';
+
 .lj-aside-nav
+  display block
+  margin-bottom 8px
   padding 0 1rem
   height 3em
   line-height 3em
+  color var(--text-secondary)
+  border-radius 4px
+  transition background 0.4s, color 0.4s
+  &:hover
+    color var(--primary-color-lighter)
+    background-color rgba($white, 0.4)
+  &.selected
+    color var(--primary-color)
+    background-color $white
   .icon
     margin-right 1em
-  a
-    display inline-block
+  span
     line-height 3em
     font-family Conv_webfont_lj,webfont-normal,DINRegular
     font-weight 700
-    color var(--text-secondary)

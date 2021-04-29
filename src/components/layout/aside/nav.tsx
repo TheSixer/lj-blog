@@ -7,14 +7,13 @@ interface Props {
   nav: AsideMenu;
 }
 
-const NavComponent: React.FC<Props> = ({ nav }: Props) => {
+const NavComponent: React.FC<Props> = (props: Props) => {
+  const { nav } = props;
   return (
-    <div className="lj-aside-nav">
-      <span className={`icon iconfont ${nav.icon}`} />
-      <NavLink to={nav.path} activeClassName="selected">
-        {nav.name}
-      </NavLink>
-    </div>
+    <NavLink to={nav.path} className="lj-aside-nav" activeClassName="selected">
+      <i className={`icon iconfont ${nav.icon}`} />
+      <span>{nav.name}</span>
+    </NavLink>
   );
 };
 

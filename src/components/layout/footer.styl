@@ -1,3 +1,5 @@
+@import "@/styles/init.styl";
+
 .lj-footer
   height 60px
   background-color alpha(#FFFFFF, 40%)
@@ -9,4 +11,10 @@
     margin 0 auto
     width 1050px
     height 60px
-  
+    &-divider
+      padding 0 4px
+      color rgba($black, 0.4)
+    &-item
+      a
+        &:hover
+          text-decoration underline

@@ -3,48 +3,48 @@ import React from 'react';
 import Swiper from '@/components/carousel';
 import Art from '@/types/article';
 import { animateScroll } from 'react-scroll';
-// import { connect } from 'react-redux';
-// import { add, minus, asyncAdd } from '../../actions/counter';
+import { connect } from 'react-redux';
+import * as actions from '@/actions/home';
 import HomeArticle from '@/components/Article';
-import { queryArticles } from '@/services/api';
 import './index.styl';
+import { BackTop } from 'antd';
 
 type PageStateProps = {
-  counter: {
-    num: number;
+  home: {
+    list: Art.ArticleItem[];
   };
 };
 
 type PageDispatchProps = {
-  addd: () => void;
-  dec: () => void;
-  asyncAddd: () => void;
+  queryHomeArticles: (params: Art.QueryParams) => void;
 };
 
 type PageOwnProps = {
-  num: number;
+  list: Art.ArticleItem[];
 };
 
 type PageState = {
-  list: Art.SkeletonItem[];
   data: Art.SkeletonItem[];
-  banners: Art.ArticleItem[];
 };
 
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps;
 
-export interface Index {
-  props: IProps;
-}
+// export interface Index {
+//   props: IProps;
+// }
 
 class HomePage extends React.Component<IProps, PageState> {
+  private queryParams: Art.QueryParams;
+
   constructor(props: IProps) {
     super(props);
 
     this.state = {
-      banners: [],
       data: [...new Array(10)].map(() => ({ loading: true, data: null })),
-      list: [],
+    };
+    this.queryParams = {
+      start: 0,
+      limit: 10,
     };
   }
 
@@ -52,33 +52,35 @@ class HomePage extends React.Component<IProps, PageState> {
     animateScroll.scrollToTop();
   };
 
-  getList = async () => {
-    const { data } = await queryArticles();
-    this.setState({
-      banners: data.rows.slice(0, 5),
-      list: data.rows.map((item: Art.ArticleItem) => ({
-        loading: false,
-        data: item,
-      })),
-    });
+  componentDidMount = () => {
+    this.loadData();
   };
 
-  componentDidMount = () => {
-    this.getList();
+  private loadData = () => {
+    const { queryHomeArticles } = this.props;
+    queryHomeArticles(this.queryParams);
   };
 
   public render() {
-    const { list, data, banners } = this.state;
+    const { data } = this.state;
+    const { list } = this.props;
+    const articles = list.map((item: Art.ArticleItem) => ({
+      loading: false,
+      data: item,
+    }));
     return (
       <div className="lj-blog-home">
-        <Swiper data={banners} />
+        <Swiper data={list.slice(0, 5)} />
 
         <div className="lj-blog-home-article">
-          <HomeArticle list={list.length ? list : data} />
+          <HomeArticle list={list.length ? articles : data} />
         </div>
+        <BackTop />
       </div>
     );
   }
 }
 
-export default HomePage;
+export default connect((state: PageStateProps) => state.home, {
+  ...actions,
+})(HomePage);

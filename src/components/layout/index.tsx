@@ -17,7 +17,7 @@ export type AsideMenu = {
 
 const asideMenu: AsideMenu[] = [
   {
-    path: '/home',
+    path: '/',
     name: '首页',
     icon: 'icon-lj-blog-283zhome05',
     routeName: 'home',
