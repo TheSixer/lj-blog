@@ -11,6 +11,7 @@ declare namespace Art {
     id: number;
     title: string;
     content: string;
+    cover: any;
     introduction: string;
     type: number;
     tags: string;
